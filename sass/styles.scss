@@ -1,3 +1,4 @@
+//same as main.scss previously
 @import 'theme';
 @import 'bootstrap/bootstrap';
 
@@ -15,4 +16,39 @@
   	padding-bottom: 12.5vh;
   	background-repeat: no-repeat;
   	min-height: 70vh;
+}
+
+.designer-image{
+	background-image: url(../images/designer.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+  	min-height: 70vh;
+	margin:2rem 2rem 2rem 1.75rem;
+}
+
+.about-text{
+	margin:5em;
+}
+
+.map{
+	background-color: #f4f4f4;
+	border: red solid thin;
+	min-height: 70vh;
+	margin:2rem 1.75rem 2rem 2rem;
+	background-position: center;
+}
+
+.position{
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.projects li{
+	flex: 0 0 30%;
+}
+
+img{
+	width: 100%;
+	display: block;
 }
