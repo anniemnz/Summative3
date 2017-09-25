@@ -6,22 +6,41 @@ $(function() {
   	let portfolioHTML = $('#portfolio-template').text();
 	let portfolioTemplate = Template7(portfolioHTML).compile();
 
-	 	if($('#behance-api').length>0){
+ 	if($('#behance-api').length>0){
+
+
 		let urlProjects = 'https://api.behance.net/v2/users/ilonaveresk/projects?client_id='+key; 
 		$.ajax({
 			url: urlProjects,
 			dataType: 'jsonp',
 			success: function(res){
 
-				let projects = res.projects;
-				_(projects).each(function(project,index){
+				let currentPage = 1;
 
-					if(index<6){
-						console.log(project);
+				let projects = res.projects;
+
+				function showPortfolios(pageNumber){
+
+					let startIndex = (pageNumber - 1) * 6;
+					let endIndex = startIndex + 5;
+
+					if(endIndex > projects.length - 1){
+						endIndex = projects.length - 1;
+					}
+
+					$('.project-container').empty()
+					for(i=startIndex; i<=endIndex; i++){
+
+						let project = projects[i];
 						let output = portfolioTemplate(project);
 						$(output).appendTo('.project-container')						
-					}					
-				});
+				
+					}
+
+				}
+
+				showPortfolios(currentPage);
+				
 			}			
 		});
 	}
@@ -38,7 +57,7 @@ $(function() {
 					{
 						latlng:[55.727110085045986,37.705078125],
 						description: 'Moscow, RUSSIA',
-						content:'<img src="../images/moscow.jpg">',
+						content:'<img src="images/moscow.jpg">',
 						iconImage: 'images/pointer.svg'
 					}
 					];
@@ -50,7 +69,7 @@ $(function() {
 									iconSize:[50,50]
 								});
 		let marker = L.marker(city.latlng,{icon:pointerIcon}).addTo(map);
-		marker.bindPopup('<div>'+city.description+'<div>')
+		marker.bindPopup('<div class="pop-up">'+city.description+city.content+'</div>')
 
 
 	});

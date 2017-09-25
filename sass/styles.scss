@@ -53,9 +53,9 @@
 	letter-spacing: 2px;
 }
 
-.projects li{
-	flex: 0 0 30%;
-}
+// .projects li{
+// 	flex: 0 0 30%;
+// }
 
 img{
 	width: 100%;
@@ -87,16 +87,12 @@ img{
 	margin: 0.5em;
 }
 
-.project-container>div:hover {
-  opacity: 1;
+.project-container:hover>div{
+	opacity: 0.2;
 }
 
-.project-container>div:hover >  img {
-	opacity:1;
-}
-
-.project-container>div:hover div:not(:hover){
-	opacity:0.5;
+.project-container:hover>div:hover{
+	opacity: 1;
 }
 
 .project-container .info{
@@ -107,26 +103,39 @@ img{
     left: 0%;
     position: absolute;
     transform: translate(-50%, -50%);
-	transform: translateY(100%);
+	transform: translateY(4em);
 	opacity:0;
 	pointer-events: none;
-	transition: all 0.5s ease;
+	transition: 0s;
+	
 }
 
 .project-container>div:hover>.info{
 	transform: translateY(0);
 	opacity:1;
+	transition: all 0.5s ease;
 }
 
 .info>h1{
 	text-align:center;
 	text-transform: uppercase;
-	font-size: 4.5rem;
+	font-size: 2.5rem;
+
+	@include media-breakpoint-up(md) {
+		font-size: 4.5rem;
+	}
 }
 
 .project-container .twig{
 	margin: auto;
-	width: 20em;
+	width: 5em;
+	@include media-breakpoint-up(md) {
+		width: 20em;
+	}
+}
+
+.pop-up{
+	height: 50%;
 }
 
 
