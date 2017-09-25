@@ -24,7 +24,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
   	min-height: 40vh;
-	margin: 4rem 2rem 5rem 1.75rem;
+	margin: 4rem 2rem 3rem 1.75rem;
 	box-sizing: border-box;
 	-webkit-box-shadow: -10px 14px 24px -3px rgba(0,0,0,0.21);
 	-moz-box-shadow: -10px 14px 24px -3px rgba(0,0,0,0.21);
@@ -38,8 +38,7 @@
 .map{
 	background-color: #f4f4f4;
 	min-height: 40vh;
-	margin:4rem 1.75rem 5rem 2rem;
-	background-position: center;
+	margin:4rem 1.75rem 3rem 2rem;
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -53,26 +52,37 @@
 	letter-spacing: 2px;
 }
 
-// .projects li{
-// 	flex: 0 0 30%;
-// }
-
 img{
 	width: 100%;
 	display: block;
 }
 
-.division .twig{
+.img-responsive{
 	margin: auto;
-	min-height: 5vh;
+	width: 12rem;
 	display: block;
 	position: relative;
-	// border: solid green 3px;
 	margin-bottom: 3rem;
+	opacity: 0.8;
+	@include media-breakpoint-up(md) {
+		width: 20rem;
+	}
+}
+
+.img-responsive-2{
+	margin: auto;
+	width: 12rem;
+	display: block;
+	position: relative;
+	margin-bottom: 3rem;
+	opacity: 0.8;
+	padding-top: 4rem;
+	@include media-breakpoint-up(md) {
+		width: 20rem;
+	}
 }
 
 .project-container{
-	// border:1px red solid;
 	display:flex;
 	flex-wrap:wrap;
 	padding: 0.5em;
@@ -88,7 +98,7 @@ img{
 }
 
 .project-container:hover>div{
-	opacity: 0.2;
+	opacity: 0.1;
 }
 
 .project-container:hover>div:hover{
@@ -99,15 +109,14 @@ img{
 	position:absolute;
 	width: 100%;
 	height: 100%;
-	top: 45%;
+	top: 40%;
     left: 0%;
     position: absolute;
     transform: translate(-50%, -50%);
 	transform: translateY(4em);
 	opacity:0;
 	pointer-events: none;
-	transition: 0s;
-	
+	transition: 0s;	
 }
 
 .project-container>div:hover>.info{
@@ -119,23 +128,71 @@ img{
 .info>h1{
 	text-align:center;
 	text-transform: uppercase;
-	font-size: 2.5rem;
-
+	font-size: 1.3rem;
 	@include media-breakpoint-up(md) {
-		font-size: 4.5rem;
+		font-size: 4rem;
 	}
 }
 
 .project-container .twig{
 	margin: auto;
-	width: 5em;
+	width: 6em;
 	@include media-breakpoint-up(md) {
-		width: 20em;
+		width: 12rem;
 	}
 }
 
 .pop-up{
-	height: 50%;
+	height: 100%;
+}
+
+.arrows{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0.5rem;
+}
+
+.arrows>i{
+	font-size: 1rem;
+	@include media-breakpoint-up(md) {
+		font-size: 2rem;
+	}
+}
+
+.arrows>.fa-angle-down{
+	padding-right: 0.2rem;
+	@include media-breakpoint-up(md) {
+		padding-right: 1rem;
+	}
+}
+
+.arrows>.fa-angle-up{
+	padding-left: 0.2rem;
+	@include media-breakpoint-up(md) {
+		padding-left: 1rem;
+	}
+}
+
+.bar-graph{
+	background-image: url(http://via.placeholder.com/350x150);
+	background-color: #f4f4f4;
+	min-height: 40vh;
+	margin:0rem 1rem 3rem 2rem;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.camera-graph{
+	background-image: url(http://via.placeholder.com/350x150);
+	background-color: #f4f4f4;
+	min-height: 40vh;
+	margin:0rem 1.75rem 3rem 1rem;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 

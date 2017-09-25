@@ -57,7 +57,7 @@ $(function() {
 					{
 						latlng:[55.727110085045986,37.705078125],
 						description: 'Moscow, RUSSIA',
-						content:'<img src="images/moscow.jpg">',
+						content:'<img src="images/moscow-map.jpg">',
 						iconImage: 'images/pointer.svg'
 					}
 					];
