@@ -55,6 +55,7 @@
 img{
 	width: 100%;
 	display: block;
+
 }
 
 .img-responsive{
@@ -62,23 +63,24 @@ img{
 	width: 12rem;
 	display: block;
 	position: relative;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 	opacity: 0.8;
 	@include media-breakpoint-up(md) {
-		width: 20rem;
+		width: 15rem;
 	}
 }
 
 .img-responsive-2{
 	margin: auto;
-	width: 12rem;
+	width: 10rem;
 	display: block;
 	position: relative;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 	opacity: 0.8;
-	padding-top: 4rem;
 	@include media-breakpoint-up(md) {
-		width: 20rem;
+		width: 15rem;
+		// margin-bottom: 3rem;
+
 	}
 }
 
@@ -93,8 +95,11 @@ img{
 }
 
 .project-container>div{
-	flex: 1 0 30%;
+	flex: 1 0 100%;
 	margin: 0.5em;
+	@include media-breakpoint-up(md) {
+		flex: 1 0 30%;
+	}
 }
 
 .project-container:hover>div{
@@ -106,17 +111,18 @@ img{
 }
 
 .project-container .info{
-	position:absolute;
 	width: 100%;
 	height: 100%;
-	top: 40%;
-    left: 0%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-	transform: translateY(4em);
-	opacity:0;
 	pointer-events: none;
 	transition: 0s;	
+	@include media-breakpoint-up(md) {
+		top: 40%;
+    	left: 0%;
+    	position: absolute;
+    	transform: translate(-50%, -50%);
+		transform: translateY(4em);
+		opacity:0;
+	}
 }
 
 .project-container>div:hover>.info{
@@ -158,6 +164,7 @@ img{
 	font-size: 1rem;
 	@include media-breakpoint-up(md) {
 		font-size: 2rem;
+		margin-bottom: 2rem;
 	}
 }
 
@@ -175,16 +182,6 @@ img{
 	}
 }
 
-.bar-graph{
-	background-image: url(http://via.placeholder.com/350x150);
-	background-color: #f4f4f4;
-	min-height: 40vh;
-	margin:0rem 1rem 3rem 2rem;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
 .camera-graph{
 	background-image: url(http://via.placeholder.com/350x150);
 	background-color: #f4f4f4;
@@ -194,6 +191,34 @@ img{
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+
+.title>h2{
+	text-transform: uppercase;
+	margin-bottom: 1.2rem;
+	font-size: 1.3rem;
+	@include media-breakpoint-up(md) {
+		margin-bottom: 2rem;
+		padding-top: 4rem;
+		font-size: 3rem;
+	}
+}
+
+#skills{
+	width: 950px;
+	height: 600px;
+	border:thin gray solid;
+}
+
+.sm-links>ul>li{
+	list-style-type: none;
+}
+
+hr{
+	align: center;
+	width: 78%;
+	border-width: 4px;
+}
+
 
 
 

@@ -14,10 +14,13 @@ $(function() {
 			url: urlProjects,
 			dataType: 'jsonp',
 			success: function(res){
+				let projects = res.projects;
 
 				let currentPage = 1;
 
-				let projects = res.projects;
+				let lastPage = Math.ceil(projects.length/6);
+
+				
 
 				function showPortfolios(pageNumber){
 
@@ -40,9 +43,49 @@ $(function() {
 				}
 
 				showPortfolios(currentPage);
+
+				$('.arrows .fa-angle-down').on('click',function(){
+					currentPage++;
+
+					if(currentPage > lastPage){
+						currentPage = lastPage;
+					}
+					showPortfolios(currentPage);
+				});
+
+				$('.arrows .fa-angle-up').on('click',function(){
+					currentPage--;
+
+					if(currentPage < 1){
+						currentPage = 1;
+					}
+					showPortfolios(currentPage);
+				});
 				
 			}			
 		});
+
+		let urlUser = 'https://api.behance.net/v2/users/ilonaveresk?client_id='+key; 
+		$.ajax({
+			url: urlUser,
+			dataType: 'jsonp',
+			success: function(res){
+			
+				let user = res.user;
+				$('.about-text h1').text(user.display_name);
+				$('.about-text .company').text(user.company);
+				$('.about-text .city').text(user.location);
+				$('.about-text .social-media a').attr('href',user.social_links["0"].url);
+				$('.about-text .social-media a').text(user.social_links["0"].url);
+				$('.about-text .social-media2 a').attr('href',user.social_links["2"].url);
+				$('.about-text .social-media2 a').text(user.social_links["2"].url);
+				$('.about-text .website').text(user.website);
+
+				console.log(res);
+			}			
+		});
+
+
 	}
 
 
