@@ -110,7 +110,7 @@ img{
 	flex: 1 0 100%;
 	margin: 0.5em;
 	@include media-breakpoint-up(md) {
-		flex: 1 0 30%;
+		flex: 0 0 30%;
 	}
 }
 
@@ -216,26 +216,52 @@ img{
 	}
 }
 
-#skills{
-	width: 950px;
-	height: 600px;
+#views{
+	width: 400px;
+	height: 400px;
 	border:thin gray solid;
 }
 
-.sm-links>ul{
-	list-style-type: none;
-	border: red solid 2px;
-	flex-direction: row;
-	font-size: 2rem;
-	color: black;
-	text-decoration: none;
-	margin-top: 2rem;
+#appreciations{
+	width: 400px;
+	height: 400px;
+	border:thin gray solid;
 }
 
+#followers{
+	width: 400px;
+	height: 400px;
+	border:thin gray solid;
+}
+
+#following{
+	width: 400px;
+	height: 400px;
+	border:thin gray solid;
+}
+
+ul{
+	list-style-type: none;
+	flex-direction: row;
+	font-size: 2rem;
+	margin-top: 1rem;
+	justify-content: space-evenly;
+	padding-left: 0;
+	width: 30%;
+	@include media-breakpoint-up(md) {
+		font-size: 2rem;
+		margin-top: 3rem;
+
+	}
+}
 
 hr{
 	width: 45%;
 	border-width: 4px;
+}
+
+.sm-links{
+	width: 100%;
 }
 
 

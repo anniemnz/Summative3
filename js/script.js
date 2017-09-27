@@ -117,6 +117,111 @@ $(function() {
 
 	});
 
+	//---------- Draw Graphs
+
+	let viewsData = [
+		{name:'bla', value:100},
+		{name:'bla1', value:150},
+		{name:'bla2', value:120},
+		{name:'bla3', value:150},
+	];
+
+	let width = 400;
+	let height = 300;
+	let margin = 50;
+	let viewsGraph = d3.select('#views').append('g');
+	viewsGraph.attr('transform','translate('+margin+','+margin+')')
+							
+
+
+	viewsGraph.selectAll('rect')
+		.data(viewsData)
+		.enter()
+		.append('rect')
+		.attr('height',function(d){ return d.value})
+		.attr('width',40)
+		.attr('x',function(d,i){ return i*80})
+		.attr('y',function(d){ return height - d.value})
+
+
+
+
+	let apprecData = [
+		{name: 'dada', value: 20},
+		{name: 'dada', value: 40},
+		{name: 'dada', value: 60},
+		{name: 'dada', value: 80},
+	];
+
+	let apprecGraph = d3.select('#appreciations').append('g');
+	apprecGraph.attr('transform','translate('+margin+','+margin+')')
+
+
+	apprecGraph.selectAll('rect')
+		.data(apprecData)
+		.enter()
+		.append('rect')
+		.attr('height',function(d){ return d.value})
+		.attr('width',40)
+		.attr('x',function(d,i){ return i*80})
+		.attr('y',function(d){ return height - d.value})
+
+
+
+
+
+	let follData = [
+		{name: 'jaja', value: 30},
+		{name: 'jaja', value: 80},
+		{name: 'jaja', value: 110},
+		{name: 'jaja', value: 90},
+	];
+
+	let follGraph = d3.select('#followers').append('g');
+	follGraph.attr('transform','translate('+margin+','+margin+')')
+
+	follGraph.selectAll('rect')
+		.data(follData)
+		.enter()
+		.append('rect')
+		.attr('height',function(d){ return d.value})
+		.attr('width',40)
+		.attr('x',function(d,i){ return i*80})
+		.attr('y',function(d){ return height - d.value})
+
+
+
+
+
+	let followingData = [
+		{name: 'gaga', value: 70},
+		{name: 'gaga', value: 60},
+		{name: 'gaga', value: 120},
+		{name: 'gaga', value: 80},
+	];
+
+	let followingGraph = d3.select('#following').append('g');
+	followingGraph.attr('transform','translate('+margin+','+margin+')')
+
+	followingGraph.selectAll('rect')
+		.data(followingData)
+		.enter()
+		.append('rect')
+		.attr('height',function(d){ return d.value})
+		.attr('width',40)
+		.attr('x',function(d,i){ return i*80})
+		.attr('y',function(d){ return height - d.value})
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
