@@ -117,7 +117,9 @@ $(function() {
 
 	});
 
-	//---------- Draw Graphs
+// ===========  DRAW GRAPHS  ============
+
+// ===========  GRAPH VIEWS  ============
 
 	let viewsData = [
 		{name:'bla', value:100},
@@ -126,31 +128,75 @@ $(function() {
 		{name:'bla3', value:150},
 	];
 
+	// =======  PROMISES  ===========
+
+	// let urlUser1 = 'https://api.behance.net/v2/users/'+user1ID+'?client_id='+key;
+	// let urlUser2 = 'https://api.behance.net/v2/users/'+user2ID+'?client_id='+key;
+	// let urlUser3 = 'https://api.behance.net/v2/users/'+user3ID+'?client_id='+key;
+	// let urlUser4 = 'https://api.behance.net/v2/users/'+user4ID+'?client_id='+key;
+
+	// let promise1 = $.ajax({
+	// 	url:urlUser1,
+	// 	dataType: 'jsonp'
+	// });
+
+	// let promise2 = $.ajax({
+	// 	url:urlUser2,
+	// 	dataType: 'jsonp'
+	// });
+
+	// let promise3 = $.ajax({
+	// 	url:urlUser3,
+	// 	dataType: 'jsonp'
+	// });
+
+	// let promise4 = $.ajax({
+	// 	url:urlUser4,
+	// 	dataType: 'jsonp'
+	// });
+
+	// $.when(promise1,promise2,promise3,promise4).done(function(r1,r2,r3,r4){
+
+	// 		let data = {
+	// 			'user1' : r1[0].user.stats,
+	// 			'user2' : r2[0].user.stats,
+	// 			'user3' : r3[0].user.stats,
+	// 			'user4' : r4[0].user.stats,
+	// 		}
+	// };
+
+	// ==========  END OF PROMISES  ===========
+
 	let width = 400;
 	let height = 300;
 	let margin = 50;
-	let viewsGraph = d3.select('#views').append('g');
+	let viewsGraph = d3.select('#views')
+					   	.append('g');
 	viewsGraph.attr('transform','translate('+margin+','+margin+')')
 							
-
 
 	viewsGraph.selectAll('rect')
 		.data(viewsData)
 		.enter()
 		.append('rect')
 		.attr('height',function(d){ return d.value})
-		.attr('width',40)
+		.attr('width',50)
 		.attr('x',function(d,i){ return i*80})
 		.attr('y',function(d){ return height - d.value})
+		.transition()
+		.duration(1000)
+		.attr('fill','#8ba3a6');
 
+		
 
+// ===========  GRAPH APPRECIATIONS  ============
 
 
 	let apprecData = [
-		{name: 'dada', value: 20},
-		{name: 'dada', value: 40},
-		{name: 'dada', value: 60},
-		{name: 'dada', value: 80},
+		{name: 'dada', value: 120},
+		{name: 'dada', value: 140},
+		{name: 'dada', value: 100},
+		{name: 'dada', value: 130},
 	];
 
 	let apprecGraph = d3.select('#appreciations').append('g');
@@ -162,19 +208,24 @@ $(function() {
 		.enter()
 		.append('rect')
 		.attr('height',function(d){ return d.value})
-		.attr('width',40)
+		.attr('width',50)
 		.attr('x',function(d,i){ return i*80})
 		.attr('y',function(d){ return height - d.value})
+		.transition()
+		.duration(1000)
+		.attr('fill','#4c6575');
+
+		
 
 
-
+// ===========  GRAPH FOLLOWERS  ============
 
 
 	let follData = [
-		{name: 'jaja', value: 30},
-		{name: 'jaja', value: 80},
+		{name: 'jaja', value: 130},
+		{name: 'jaja', value: 180},
 		{name: 'jaja', value: 110},
-		{name: 'jaja', value: 90},
+		{name: 'jaja', value: 140},
 	];
 
 	let follGraph = d3.select('#followers').append('g');
@@ -185,19 +236,23 @@ $(function() {
 		.enter()
 		.append('rect')
 		.attr('height',function(d){ return d.value})
-		.attr('width',40)
+		.attr('width',50)
 		.attr('x',function(d,i){ return i*80})
 		.attr('y',function(d){ return height - d.value})
+		.transition()
+		.duration(1000)
+		.attr('fill','#293e4f');
 
 
 
 
+// ===========  GRAPH FOLLOWING  ============
 
 	let followingData = [
-		{name: 'gaga', value: 70},
-		{name: 'gaga', value: 60},
+		{name: 'gaga', value: 170},
+		{name: 'gaga', value: 160},
 		{name: 'gaga', value: 120},
-		{name: 'gaga', value: 80},
+		{name: 'gaga', value: 180},
 	];
 
 	let followingGraph = d3.select('#following').append('g');
@@ -208,10 +263,14 @@ $(function() {
 		.enter()
 		.append('rect')
 		.attr('height',function(d){ return d.value})
-		.attr('width',40)
+		.attr('width',50)
 		.attr('x',function(d,i){ return i*80})
 		.attr('y',function(d){ return height - d.value})
+		.transition()
+		.duration(1000)
+		.attr('fill','#1a2330');
 });
+
 
 
 
