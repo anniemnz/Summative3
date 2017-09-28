@@ -119,77 +119,92 @@ $(function() {
 
 // ===========  DRAW GRAPHS  ============
 
-// ===========  GRAPH VIEWS  ============
-
-	let viewsData = [
-		{name:'bla', value:100},
-		{name:'bla1', value:150},
-		{name:'bla2', value:120},
-		{name:'bla3', value:150},
-	];
-
 	// =======  PROMISES  ===========
 
-	// let urlUser1 = 'https://api.behance.net/v2/users/'+user1ID+'?client_id='+key;
-	// let urlUser2 = 'https://api.behance.net/v2/users/'+user2ID+'?client_id='+key;
-	// let urlUser3 = 'https://api.behance.net/v2/users/'+user3ID+'?client_id='+key;
-	// let urlUser4 = 'https://api.behance.net/v2/users/'+user4ID+'?client_id='+key;
+	let urlUser1 = 'https://api.behance.net/v2/users/ilonaveresk?client_id='+key;
+	let urlUser2 = 'https://api.behance.net/v2/users/Carlaveggio?client_id='+key;
+	let urlUser3 = 'https://api.behance.net/v2/users/andrejosselin?client_id='+key;
+	let urlUser4 = 'https://api.behance.net/v2/users/tinapicardphoto?client_id='+key;
 
-	// let promise1 = $.ajax({
-	// 	url:urlUser1,
-	// 	dataType: 'jsonp'
-	// });
+	let promise1 = $.ajax({
+		url:urlUser1,
+		dataType: 'jsonp'
+	});
 
-	// let promise2 = $.ajax({
-	// 	url:urlUser2,
-	// 	dataType: 'jsonp'
-	// });
+	let promise2 = $.ajax({
+		url:urlUser2,
+		dataType: 'jsonp'
+	});
 
-	// let promise3 = $.ajax({
-	// 	url:urlUser3,
-	// 	dataType: 'jsonp'
-	// });
+	let promise3 = $.ajax({
+		url:urlUser3,
+		dataType: 'jsonp'
+	});
 
-	// let promise4 = $.ajax({
-	// 	url:urlUser4,
-	// 	dataType: 'jsonp'
-	// });
-
-	// $.when(promise1,promise2,promise3,promise4).done(function(r1,r2,r3,r4){
-
-	// 		let data = {
-	// 			'user1' : r1[0].user.stats,
-	// 			'user2' : r2[0].user.stats,
-	// 			'user3' : r3[0].user.stats,
-	// 			'user4' : r4[0].user.stats,
-	// 		}
-	// };
-
-	// ==========  END OF PROMISES  ===========
+	let promise4 = $.ajax({
+		url:urlUser4,
+		dataType: 'jsonp'
+	});
 
 	let width = 400;
 	let height = 300;
 	let margin = 50;
-	let viewsGraph = d3.select('#views')
-					   	.append('g');
-	viewsGraph.attr('transform','translate('+margin+','+margin+')')
-							
 
-	viewsGraph.selectAll('rect')
-		.data(viewsData)
-		.enter()
-		.append('rect')
-		.attr('height',function(d){ return d.value})
-		.attr('width',50)
-		.attr('x',function(d,i){ return i*80})
-		.attr('y',function(d){ return height - d.value})
-		.transition()
-		.duration(1000)
-		.attr('fill','#8ba3a6');
+
+	$.when(promise1,promise2,promise3,promise4).done(function(r1,r2,r3,r4){
+
+		let viewsData = [
+			{name: 'user1', value: r1[0].user.stats.views},
+			{name: 'user2', value: r2[0].user.stats.views},
+			{name: 'user3', value: r3[0].user.stats.views},
+			{name: 'user4', value: r4[0].user.stats.views}
+
+		];
+
+		//console.log(r1[0].user.stats);
+		// ===========  GRAPH-1 VIEWS  ============
+
+
+		
+		let viewsGraph = d3.select('#views')
+					   	.append('g');
+		viewsGraph.attr('transform','translate('+margin+','+margin+')')
+							
+		var maxViews = d3.max(viewsData, function(d) { return +d.value;} );
+		var yViewsScale = d3.scaleLinear()
+				.domain([0,maxViews])
+				.range([height,0])	
+
+		viewsGraph.selectAll('rect')
+			.data(viewsData)
+			.enter()
+			.append('rect')
+			.attr('width',50)
+			.attr('x',function(d,i){ return i*80})
+			.attr('y',function(d){ return yViewsScale(d.value) })
+			.attr('height',function(d){ return height - yViewsScale(d.value) })	
+			.attr('fill','#8ba3a6');
+
+		var yAxisViewsGen = d3.axisLeft(yViewsScale).ticks(4);
+		viewsGraph.append('g')
+			.call(yAxisViewsGen);
+
+		//=======end of graph1
+
+
+
+
+	});
+
+			
+
+	// ==========  END OF PROMISES  ===========
+
+
 
 		
 
-// ===========  GRAPH APPRECIATIONS  ============
+// ===========  GRAPH-2 APPRECIATIONS  ============
 
 
 	let apprecData = [
@@ -218,7 +233,7 @@ $(function() {
 		
 
 
-// ===========  GRAPH FOLLOWERS  ============
+// ===========  GRAPH-3 FOLLOWERS  ============
 
 
 	let follData = [
@@ -246,7 +261,7 @@ $(function() {
 
 
 
-// ===========  GRAPH FOLLOWING  ============
+// ===========  GRAPH-4 FOLLOWING  ============
 
 	let followingData = [
 		{name: 'gaga', value: 170},
