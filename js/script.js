@@ -146,9 +146,10 @@ $(function() {
 		dataType: 'jsonp'
 	});
 
-	let width = 400;
+	let width = 700;
 	let height = 300;
-	let margin = 50;
+	let margin = 100;
+	let marginLeft = 100;
 
 
 	$.when(promise1,promise2,promise3,promise4).done(function(r1,r2,r3,r4){
@@ -160,6 +161,32 @@ $(function() {
 			{name: 'user4', value: r4[0].user.stats.views}
 
 		];
+
+		let apprecData = [
+			{name: 'user1', value: r1[0].user.stats.appreciations},
+			{name: 'user2', value: r2[0].user.stats.appreciations},
+			{name: 'user3', value: r3[0].user.stats.appreciations},
+			{name: 'user4', value: r4[0].user.stats.appreciations}
+
+		];
+
+		let follData = [
+			{name: 'user1', value: r1[0].user.stats.followers},
+			{name: 'user2', value: r2[0].user.stats.followers},
+			{name: 'user3', value: r3[0].user.stats.followers},
+			{name: 'user4', value: r4[0].user.stats.followers}
+
+		];
+
+		let followingData = [
+			{name: 'user1', value: r1[0].user.stats.following},
+			{name: 'user2', value: r2[0].user.stats.following},
+			{name: 'user3', value: r3[0].user.stats.following},
+			{name: 'user4', value: r4[0].user.stats.following}
+
+		];
+
+// ==========  END OF PROMISES  ===========
 
 		//console.log(r1[0].user.stats);
 		// ===========  GRAPH-1 VIEWS  ============
@@ -180,111 +207,148 @@ $(function() {
 			.enter()
 			.append('rect')
 			.attr('width',50)
-			.attr('x',function(d,i){ return i*80})
+			.attr('x',function(d,i){ return i*100})
 			.attr('y',function(d){ return yViewsScale(d.value) })
 			.attr('height',function(d){ return height - yViewsScale(d.value) })	
 			.attr('fill','#8ba3a6');
 
-		var yAxisViewsGen = d3.axisLeft(yViewsScale).ticks(4);
+		var yAxisViewsGen = d3.axisLeft(yViewsScale).ticks(5);
 		viewsGraph.append('g')
 			.call(yAxisViewsGen);
 
-		//=======end of graph1
-
-
-
-
-	});
-
-			
-
-	// ==========  END OF PROMISES  ===========
-
-
-
-		
 
 // ===========  GRAPH-2 APPRECIATIONS  ============
 
-
-	let apprecData = [
-		{name: 'dada', value: 120},
-		{name: 'dada', value: 140},
-		{name: 'dada', value: 100},
-		{name: 'dada', value: 130},
-	];
-
-	let apprecGraph = d3.select('#appreciations').append('g');
+	let apprecGraph = d3.select('#appreciations')
+						.append('g');
 	apprecGraph.attr('transform','translate('+margin+','+margin+')')
+
+	var maxApprec = d3.max(apprecData, function(d) { return +d.value;} );
+		var yApprecScale = d3.scaleLinear()
+				.domain([0,maxApprec])
+				.range([height,0])	
 
 
 	apprecGraph.selectAll('rect')
 		.data(apprecData)
 		.enter()
 		.append('rect')
-		.attr('height',function(d){ return d.value})
 		.attr('width',50)
-		.attr('x',function(d,i){ return i*80})
+		.attr('x',function(d,i){ return i*100})
 		.attr('y',function(d){ return height - d.value})
-		.transition()
-		.duration(1000)
+		.attr('y',function(d){ return yApprecScale(d.value) })
+		.attr('height',function(d){ return height - yApprecScale(d.value) })
 		.attr('fill','#4c6575');
 
-		
+	var yAxisApprecGen = d3.axisLeft(yApprecScale).ticks(5);
+		apprecGraph.append('g')
+			.call(yAxisApprecGen);
 
 
-// ===========  GRAPH-3 FOLLOWERS  ============
+	// ===========  GRAPH-3 FOLLOWERS  ============
 
 
-	let follData = [
-		{name: 'jaja', value: 130},
-		{name: 'jaja', value: 180},
-		{name: 'jaja', value: 110},
-		{name: 'jaja', value: 140},
-	];
-
-	let follGraph = d3.select('#followers').append('g');
+	let follGraph = d3.select('#followers')
+						.append('g');
 	follGraph.attr('transform','translate('+margin+','+margin+')')
+
+	var maxFoll = d3.max(follData, function(d) { return +d.value;} );
+		var yFollScale = d3.scaleLinear()
+				.domain([0,maxFoll])
+				.range([height,0])
 
 	follGraph.selectAll('rect')
 		.data(follData)
 		.enter()
 		.append('rect')
-		.attr('height',function(d){ return d.value})
 		.attr('width',50)
-		.attr('x',function(d,i){ return i*80})
+		.attr('x',function(d,i){ return i*100})
 		.attr('y',function(d){ return height - d.value})
-		.transition()
-		.duration(1000)
+		.attr('y',function(d){ return yFollScale(d.value) })
+		.attr('height',function(d){ return height - yFollScale(d.value) })
 		.attr('fill','#293e4f');
 
-
-
+	var yAxisFollGen = d3.axisLeft(yFollScale).ticks(5);
+		follGraph.append('g')
+			.call(yAxisFollGen);
 
 // ===========  GRAPH-4 FOLLOWING  ============
 
-	let followingData = [
-		{name: 'gaga', value: 170},
-		{name: 'gaga', value: 160},
-		{name: 'gaga', value: 120},
-		{name: 'gaga', value: 180},
-	];
-
-	let followingGraph = d3.select('#following').append('g');
+	let followingGraph = d3.select('#following')
+							.append('g');
 	followingGraph.attr('transform','translate('+margin+','+margin+')')
+
+	var maxFollowing = d3.max(followingData, function(d) { return +d.value;} );
+		var yFollowingScale = d3.scaleLinear()
+				.domain([0,maxFollowing])
+				.range([height,0])
 
 	followingGraph.selectAll('rect')
 		.data(followingData)
 		.enter()
 		.append('rect')
-		.attr('height',function(d){ return d.value})
 		.attr('width',50)
-		.attr('x',function(d,i){ return i*80})
+		.attr('x',function(d,i){ return i*100})
 		.attr('y',function(d){ return height - d.value})
-		.transition()
-		.duration(1000)
+		.attr('y',function(d){ return yFollowingScale(d.value) })
+		.attr('height',function(d){ return height - yFollowingScale(d.value) })
 		.attr('fill','#1a2330');
+
+		var yAxisFollowingGen = d3.axisLeft(yFollowingScale).ticks(5);
+		followingGraph.append('g')
+			.call(yAxisFollowingGen);
+
+// ==========  END OF GRAPHS  ===========
+
+
+
+
+	});
+
 });
+		
+
+// var modal = document.getElementById('projects');
+
+// // Get the button that opens the modal
+// // var img = document.getElementById("history");
+// var img2 = document.getElementById("nzImg");
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks the button, open the modal 
+// img.onclick = function() {
+//     modal.style.display = "block";
+// };
+
+// img2.onclick = function() {
+//     modal.style.display = "block";
+// };
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+// };
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// };
+
+	
+
+		
+
+
+
+
+
+
+
+
 
 
 

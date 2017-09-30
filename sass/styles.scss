@@ -54,6 +54,10 @@
 	margin-top: 2rem;
 }
 
+.sm-links{
+	width: 100%;
+}
+
 .map{
 	background-color: #f4f4f4;
 	min-height: 40vh;
@@ -115,7 +119,7 @@ img{
 }
 
 .project-container:hover>div{
-	opacity: 0.1;
+	opacity: 0.2;
 }
 
 .project-container:hover>div:hover{
@@ -195,16 +199,6 @@ img{
 	}
 }
 
-.camera-graph{
-	background-image: url(http://via.placeholder.com/350x150);
-	background-color: #f4f4f4;
-	min-height: 40vh;
-	margin:0rem 1.75rem 3rem 1rem;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
 .title>h2{
 	text-transform: uppercase;
 	margin-bottom: 1.2rem;
@@ -217,27 +211,39 @@ img{
 }
 
 #views{
-	width: 400px;
+	width: 420px;
 	height: 400px;
-	border:thin gray solid;
+	border:1px #8ba3a6 solid;
+	-webkit-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	-moz-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
 }
 
 #appreciations{
-	width: 400px;
+	width: 420px;
 	height: 400px;
-	border:thin gray solid;
+	border:1px #8ba3a6 solid;
+	-webkit-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	-moz-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
 }
 
 #followers{
-	width: 400px;
+	width: 420px;
 	height: 400px;
-	border:thin gray solid;
+	border:1px #8ba3a6 solid;
+	-webkit-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	-moz-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
 }
 
 #following{
-	width: 400px;
+	width: 420px;
 	height: 400px;
-	border:thin gray solid;
+	border:1px #8ba3a6 solid;
+	-webkit-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	-moz-box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
+	box-shadow: 7px 10px 22px 2px rgba(0,0,0,0.21);
 }
 
 ul{
@@ -251,7 +257,6 @@ ul{
 	@include media-breakpoint-up(md) {
 		font-size: 2rem;
 		margin-top: 3rem;
-
 	}
 }
 
@@ -260,9 +265,37 @@ hr{
 	border-width: 4px;
 }
 
-.sm-links{
-	width: 100%;
+.graph-data{
+	margin: auto;
 }
+
+// =====  modal
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+// .close {
+//     color: #aaaaaa;
+//     float: right;
+//     font-size: 28px;
+//     font-weight: bold;
+// }
+
+// .close:hover,
+// .close:focus {
+//     color: #000;
+//     text-decoration: none;
+//     cursor: pointer;
+// }
+
+
+
 
 
 
